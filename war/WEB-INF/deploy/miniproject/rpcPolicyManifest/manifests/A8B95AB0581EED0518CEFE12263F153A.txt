@@ -1,0 +1,2 @@
+serviceClass: com.example.miniproject.client.UserService
+path: 371803B5843FE0E48A4AC70EE3D0C982.gwt.rpc

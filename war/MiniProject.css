@@ -1,0 +1,29 @@
+/** Add css rules here for your application. */
+
+.mainPanel{
+	border: 1px solid black;
+	margin:auto;
+	width: 1000px;
+}
+
+.postPanel{
+	border: 1px solid blue;
+	margin:auto;
+	width: 700px;
+	margin-bottom: 20px;
+}
+
+.categoryPanel{
+	width: 250px;
+}
+
+.postHeader{
+	size:16px;
+	padding:5px;
+	border: 1 px solid red;
+}
+.postDescription{
+	size:12px;
+	padding:5px;
+	border: 1 px solid green;
+}
