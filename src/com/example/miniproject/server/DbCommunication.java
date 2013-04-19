@@ -153,19 +153,20 @@ public class DbCommunication {
 				foundPost.setCreator(rs.getString(9));
 				postArray.add(foundPost);
 			}
+
 			if (parents){
 				rs = stat.executeQuery("select * from Categories where Parent ='" + category.getId() + "';");
 
 				while(rs.next()) {
 					Category foundCategory = new Category();
 
-					while(rs.next()) {
-						foundCategory = new Category();
-						foundCategory.setId(rs.getInt(1));
-						foundCategory.setName(rs.getString(2));
-						foundCategory.setParent(rs.getInt(3));
-						postArray.addAll(getPosts(foundCategory));
-					}
+
+					foundCategory = new Category();
+					foundCategory.setId(rs.getInt(1));
+					foundCategory.setName(rs.getString(2));
+					foundCategory.setParent(rs.getInt(3));
+					postArray.addAll(getPosts(foundCategory));
+
 
 				}
 			}
@@ -206,5 +207,121 @@ public class DbCommunication {
 			e.printStackTrace();			
 		}		
 		return categoryArray;
+	}
+
+	public Boolean isAdmin(String userName) {
+		Connection conn = getConnection();
+
+		try {
+			Statement stat = conn.createStatement();
+			ResultSet rs = stat.executeQuery("select * from Admins;");
+
+			while(rs.next()) {
+
+				if(userName.equals(rs.getString(1))){
+					rs.close();
+					conn.close();
+					return true;
+				}
+
+			}
+			rs.close();
+			conn.close();
+		}catch(SQLException e) {
+			e.printStackTrace();			
+		}
+
+		return false;
+	}
+
+	public void removePost(int id) {
+		Connection conn = getConnection();
+
+		try {
+			Statement stat = conn.createStatement();
+			stat.executeUpdate("delete from Posts where Id ='" + id + "';");
+			stat.close();
+			conn.close();
+		}catch(SQLException e) {
+			e.printStackTrace();			
+		}					
+	}
+
+	public void addCategory(int parentId, String categoryName) {
+		Connection conn = getConnection();
+
+		try {
+			PreparedStatement prep = conn.prepareStatement("insert into Categories values (?, ?, ?);");
+			prep.setString(1, null);
+			prep.setString(2, categoryName);
+			prep.setInt(3, parentId);
+			prep.execute();
+			prep.close();
+			conn.close();
+		}catch(SQLException e) {
+			e.printStackTrace();			
+		}					
+
+	}
+
+	public User getUser(String creator) {
+		User foundUser = new User();		
+		Connection conn = getConnection();
+
+		try {
+			Statement stat = conn.createStatement();
+
+			ResultSet rs = stat.executeQuery("select * from Users where User_Name = '" + creator + "';");
+
+			if(rs.next()){
+				foundUser.setUserName(rs.getString(1));
+				foundUser.setFirstName(rs.getString(3));
+				foundUser.setLastName(rs.getString(4));
+				foundUser.setEmail(rs.getString(5));
+				foundUser.setPhoneNumber(rs.getString(6));			
+			}
+
+			rs.close();
+			stat.close();
+			conn.close();
+			return foundUser;
+
+		} catch(Exception e) {
+			e.printStackTrace();		
+		}
+
+		return null;	
+	}
+	
+	public ArrayList<User> getUsers() {
+		ArrayList<User> users = new ArrayList<User>();
+		User foundUser = new User();		
+		Connection conn = getConnection();
+
+		try {
+			Statement stat = conn.createStatement();
+
+			ResultSet rs = stat.executeQuery("select * from Users;");
+
+			while(rs.next()){
+				foundUser = new User();
+				foundUser.setUserName(rs.getString(1));
+				foundUser.setFirstName(rs.getString(3));
+				foundUser.setLastName(rs.getString(4));
+				foundUser.setEmail(rs.getString(5));
+				foundUser.setPhoneNumber(rs.getString(6));	
+				users.add(foundUser);
+			}
+
+			rs.close();
+			stat.close();
+			conn.close();
+			return users;
+
+		} catch(Exception e) {
+			e.printStackTrace();		
+		}
+
+		return null;	
 	}
 }

@@ -41,6 +41,22 @@ public class UserServiceQuery {
 		userSvc.getCategories(new AsyncGetCategories());
 	}	
 	
+	public void isAdmin(String userName) {
+		userSvc.isAdmin(userName, new AsyncIsAdmin());
+	}
+	
+	public void removePost(int id) {
+		userSvc.removePost(id, new AsyncRemovePost());		
+	}
+	
+	public void addCategory(int parentId, String categoryName) {
+		userSvc.addCategory(parentId, categoryName, new AsyncAddCategory());	
+	}
+	
+	public void getUser() {
+		userSvc.getUsers(new AsyncGetUsers());		
+	}
+	
 	private class AsyncTestSQL implements AsyncCallback<String> {
 
 		@Override
@@ -123,4 +139,61 @@ public class UserServiceQuery {
 			mp.setCategories(result);
 		}	
 	}
+	
+	private class AsyncIsAdmin implements AsyncCallback<Boolean> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onSuccess(Boolean result) {
+			mp.setAdmin(result);
+		}	
+	}
+	
+	private class AsyncRemovePost implements AsyncCallback<Boolean> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onSuccess(Boolean result) {
+			mp.updatePosts();
+		}	
+	}
+	
+	private class AsyncAddCategory implements AsyncCallback<Boolean> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onSuccess(Boolean result) {
+			getCategories();
+		}	
+	}
+	
+	private class AsyncGetUsers implements AsyncCallback<ArrayList<User>> {
+
+		@Override
+		public void onFailure(Throwable caught) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onSuccess(ArrayList<User> result) {
+			mp.setUsers(result);
+		}	
+	}
+
 }

@@ -41,4 +41,26 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
 	public ArrayList<Category> getCategories() {
 		return db.getCategories();
 	}
+
+	@Override
+	public boolean isAdmin(String userName) {
+		return db.isAdmin(userName);
+	}
+
+	@Override
+	public boolean removePost(int id) {
+		db.removePost(id);
+		return false;
+	}
+
+	@Override
+	public boolean addCategory(int parentId, String categoryName) {
+		db.addCategory(parentId, categoryName);
+		return false;
+	}
+
+	@Override
+	public ArrayList<User> getUsers() {
+		return db.getUsers();
+	}
 }

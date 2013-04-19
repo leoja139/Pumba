@@ -21,4 +21,12 @@ public interface UserService extends RemoteService {
 	ArrayList<Post> getPosts(Category category);
 
 	ArrayList<Category> getCategories();
+
+	boolean isAdmin(String userName);
+
+	boolean removePost(int id);
+
+	boolean addCategory(int parentId, String categoryName);
+
+	ArrayList<User> getUsers();
 }

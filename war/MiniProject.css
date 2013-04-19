@@ -2,28 +2,83 @@
 
 .mainPanel{
 	border: 1px solid black;
+	box-shadow: 10px 10px 20px #888888;
 	margin:auto;
-	width: 1000px;
+	width: 1200px;
+	padding: 20px;
 }
-
+.topPanel{
+	width:100%;
+}
+.searchField{
+	margin:auto;
+	width:500px;
+	margin-top:30px;
+}
+.loginButton{
+	float: right;
+}
+.userPanel{
+	width: 300px;
+	padding:30 px;
+	float:right;
+}
+.itemPanel{
+	width: 450px;
+	padding:30 px;
+	float:left;
+}
 .postPanel{
-	border: 1px solid blue;
+	border: 1px solid #888888;
+	border-radius:10px;
+	box-shadow: 6px 6px 19px rgba(50, 50, 50, 0.78);
 	margin:auto;
 	width: 700px;
 	margin-bottom: 20px;
+	overflow:auto;
+	padding:10px;
+}
+.categoryPanel{
+	width: 200px;
+	border: 1px solid #888888;
+	border-radius:10px;
+	box-shadow: 6px 6px 19px rgba(50, 50, 50, 0.78);
+	margin-right:50px;
 }
 
-.categoryPanel{
-	width: 250px;
+.staticTree{
+	margin-top:10px;
+	margin-bottom:20px;
 }
 
 .postHeader{
-	size:16px;
+	font-size:18px;
 	padding:5px;
-	border: 1 px solid red;
 }
 .postDescription{
-	size:12px;
 	padding:5px;
-	border: 1 px solid green;
+	font-size:14px;
 }
+.postPrice{
+	padding:5px;
+}
+.postCity{
+	padding:5px;
+}
+.postDate{
+	padding:5px;
+}
+.postShipable{
+	padding:5px;
+}
+.postFirstName{
+	padding:5px;
+}
+.postEmail{
+	padding:5px;
+}
+.postPhoneNumber{
+	padding:5px;
+}
+
+

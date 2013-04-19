@@ -19,6 +19,14 @@ public interface UserServiceAsync {
 
 	void getPosts(Category category, AsyncCallback<ArrayList<Post>> callback);
 
-	void getCategories(AsyncCallback<ArrayList<Category>> callback);
+	void getCategories(AsyncCallback<ArrayList<Category>> callback); 
+
+	void isAdmin(String userName, AsyncCallback<Boolean> callback);
+
+	void removePost(int id, AsyncCallback<Boolean> callback);
+
+	void addCategory(int parentId, String categoryName, AsyncCallback<Boolean> callback);
+
+	void getUsers(AsyncCallback<ArrayList<User>> callback);
 
 }
